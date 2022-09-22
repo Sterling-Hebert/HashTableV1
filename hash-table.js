@@ -26,11 +26,32 @@ class HashTable {
     return this.hash(key) % this.data.length;
   }
 
-  insertNoCollisions(key, value) {}
+  insertNoCollisions(key, value) {
+    let index = this.hashMod(key);
+    const newPair = new KeyValuePair(key, value);
+    if(!this.data[index]){
+      this.data[index] = newPair;
+      this.count++;
+    } else {
+      throw new Error('hash collision or same key/value pair already exists!')
+    }
+   }
 
-  insertWithHashCollisions(key, value) {}
+  insertWithHashCollisions(key, value) {
+    let index = this.hashMod(key);
+    const newPair = new KeyValuePair(key, value);
+    if(!this.data[index]){
+      this.data[index] = newPair;
+      this.count++;
+    } else {
 
-  insert(key, value) {}
+    }
+   }
+  
+
+  insert(key, value) {
+
+  }
 }
 
 module.exports = HashTable;
