@@ -38,14 +38,19 @@ class HashTable {
    }
 
   insertWithHashCollisions(key, value) {
-    let index = this.hashMod(key);
-    const newPair = new KeyValuePair(key, value);
-    if(!this.data[index]){
+  let index = this.hashMod(key);
+  const newPair = new KeyValuePair(key, value);
+  newPair.next = this.data[index];
+  this.data[index]= newPair;
+  this.count++;
+ /*   if(!this.data[index]){
       this.data[index] = newPair;
       this.count++;
     } else {
-
-    }
+      newPair.next = this.data[index];
+      this.data[index]= newPair;
+      this.count++;
+    }*/
    }
   
 
