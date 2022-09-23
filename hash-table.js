@@ -29,29 +29,27 @@ class HashTable {
   insertNoCollisions(key, value) {
     let index = this.hashMod(key);
     const newPair = new KeyValuePair(key, value);
-    if(!this.data[index]){
+    if (!this.data[index]) {
       this.data[index] = newPair;
       this.count++;
     } else {
-      throw new Error('hash collision or same key/value pair already exists!')
+      throw new Error("hash collision or same key/value pair already exists!");
     }
-   }
+  }
 
   insertWithHashCollisions(key, value) {
     let index = this.hashMod(key);
     const newPair = new KeyValuePair(key, value);
-    if(!this.data[index]){
+
+    if (!this.data[index]) {
       this.data[index] = newPair;
-      this.count++;
     } else {
-
+      newPair.next = this.data[index];
+      this.data[index] = newPair;
     }
-   }
-  
-
-  insert(key, value) {
-
+    this.count++;
   }
+  insert(key, value) {}
 }
 
 module.exports = HashTable;
